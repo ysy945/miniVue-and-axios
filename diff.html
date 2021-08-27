@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./diff.js"></script>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+    <button onclick="checkClick()" style="width: 50px;height: 20px;">点我</button>
+    <script>
+       
+        const app = document.getElementById("app")
+        
+        const vnode1 = h("div",{key:"test"},[
+            h("div",{key:"A"},"A"),
+            h("div",{key:"B"},"B"),
+            h("div",{key:"C"},"C"),
+            h("div",{key:"D"},"D"),
+            h("div",{key:"E"},"E"),
+            
+        ])
+        const vnode2 = h("div",{key:"test"},[
+        h("div",{key:"A"},"A"),
+        h("div",{key:"M"},"M"),
+        h("div",{key:"B"},"B"),
+        h("div",{key:"Q"},"Q"),
+        h("div",{key:"E"},"E"),
+        h("div",{key:"D"},"D"),
+        h("div",{key:"C"},"C"),
+ 
+           
+            
+            
+          
+            
+            
+
+
+            
+        ])
+
+        patch(app, vnode1)
+        
+        function checkClick(){
+            patch(vnode1,vnode2)
+        }
+        
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

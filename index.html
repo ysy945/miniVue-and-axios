@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./miniVue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <img &src="imgUrl" alt="">
+        <ul>
+            <li v-for="p in persons" name="p.xxx">
+                
+                <input type="text" v-double="change.a">
+                <div>姓名:{p.name}--年龄:{p.age}--爱好:{p.hobby}</div>
+            </li>
+        </ul>
+        <input type="text" v-double="change.a">
+        <input type="text" v-double="change.a">
+        <button style="width: 100px;height: 30px;" @click="checkClick">点我切换图片</button>
+    </div>
+    <script>
+        const app = document.getElementById("app")
+        miniVue({
+            beforeUpdate() {
+                console.log(555);
+            },
+            updated() {
+                console.log(666);
+            },
+            created() {
+                console.log(222);
+            },
+            beforeCreated() {
+                console.log(111);
+            },
+            beforeMount() {
+                console.log(333);
+            },
+            mounted() {
+                console.log(444);
+            },
+            setup() {
+                const pic1 = "https://img2.baidu.com/it/u=2574107783,3717363313&fm=26&fmt=auto&gp=0.jpg"
+                const pic2 = "https://img0.baidu.com/it/u=1514002029,2035215441&fm=26&fmt=auto&gp=0.jpg"
+                const _reactive = reactive({
+                    imgUrl: "https://img2.baidu.com/it/u=2574107783,3717363313&fm=26&fmt=auto&gp=0.jpg"
+                })
+                let isShow = false
+                function checkClick() {
+                    isShow = !isShow
+                    _reactive.imgUrl = isShow ? pic2 : pic1
+                    personInfo.persons = [
+                        { name: "小余", age: "18", hobby: "打游戏", key: "1" },
+                        { name: "大哥", age: "19", hobby: "吃饭", key: "2" },
+                        { name: "二哥", age: "68", hobby: "睡觉", key: "3" },
+                        { name: "三哥", age: "60", hobby: "打坐", key: "4" },
+                        { name: "十四哥", age: "56", hobby: "打嗝", key: "5" },
+                    ]
+                    console.log(personInfo);
+                }
+                const personInfo = reactive({
+                    a:"你好",
+                    persons: [
+                        { name: "运哥", age: "18", hobby: "打游戏", key: "1" },
+                        { name: "余哥", age: "19", hobby: "吃饭", key: "2" },
+                        { name: "雷哥", age: "68", hobby: "睡觉", key: "3" },
+                        { name: "林哥", age: "60", hobby: "打坐", key: "4" },
+                        { name: "谢姐", age: "56", hobby: "打嗝", key: "5" },
+                    ]
+                })
+                console.log(ref("A"));
+
+                return {
+                    imgUrl: _reactive.imgUrl,
+                    checkClick,
+                    persons: personInfo.persons,
+                    change:personInfo
+                }
+          
+            }
+        }).$mount(app)
+
+
+    </script>
+</body>
+
+</html>
